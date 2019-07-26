@@ -17,7 +17,7 @@
 	
 	<properties>
 		<!-- REDMIC -->
-		<redmic.exceptions.version>0.8.0</redmic.exceptions.version>
+		<redmic.exceptions.version>0.9.0-feature-atlasExceptions</redmic.exceptions.version>
 		<redmic.utils.version>0.9.0-feature-cleanCapabilities</redmic.utils.version>
 	</properties>
 
