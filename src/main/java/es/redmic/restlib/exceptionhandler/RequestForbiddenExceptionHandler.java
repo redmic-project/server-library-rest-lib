@@ -21,24 +21,20 @@ package es.redmic.restlib.exceptionhandler;
  */
 
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import es.redmic.exception.common.BadRequestException;
 import es.redmic.exception.common.RequestForbiddenException;
 import es.redmic.exception.dto.ErrorDTO;
 import es.redmic.exception.handler.BaseExceptionHandler;
 
-@ControllerAdvice(annotations = RestController.class)
+@RestControllerAdvice
 public class RequestForbiddenExceptionHandler extends BaseExceptionHandler {
 
 	@ExceptionHandler(value = RequestForbiddenException.class)
 	@ResponseStatus(value = HttpStatus.FORBIDDEN) // 403
-	@ResponseBody
-	public ErrorDTO handleBadRequestException(BadRequestException e) {
+	public ErrorDTO handleBadRequestException(RequestForbiddenException e) {
 		return getError(e);
 	}
 }
