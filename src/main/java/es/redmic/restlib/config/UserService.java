@@ -27,11 +27,11 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.security.oauth2.provider.authentication.OAuth2AuthenticationDetails;
 import org.springframework.stereotype.Service;
 
@@ -45,7 +45,10 @@ public class UserService implements UserUtilsServiceItfc {
 
 	protected static Logger logger = LogManager.getLogger();
 
-	private static final String SYSTEM_USER = "REDMIC_PROCESS";
+	// @formatter:off
+	private static final String SYSTEM_USER = "REDMIC_PROCESS",
+			ANONYMOUS_USER = "1";
+	// @formatter:on
 
 	HttpClient client = new HttpClient();
 
@@ -63,7 +66,12 @@ public class UserService implements UserUtilsServiceItfc {
 		if (securityContext.getAuthentication() == null)
 			return SYSTEM_USER;
 
-		OAuth2Authentication oauth = (OAuth2Authentication) securityContext.getAuthentication();
+		Authentication oauth = securityContext.getAuthentication();
+
+		if (oauth instanceof AnonymousAuthenticationToken) {
+			return ANONYMOUS_USER;
+		}
+
 		OAuth2AuthenticationDetails details = (OAuth2AuthenticationDetails) oauth.getDetails();
 		String token = details.getTokenValue();
 
