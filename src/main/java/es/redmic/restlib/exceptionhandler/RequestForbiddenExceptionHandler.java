@@ -25,16 +25,16 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import es.redmic.exception.common.MethodNotAllowedException;
+import es.redmic.exception.common.RequestForbiddenException;
 import es.redmic.exception.dto.ErrorDTO;
 import es.redmic.exception.handler.BaseExceptionHandler;
 
 @RestControllerAdvice
-public class NotAllowedExceptionHandler extends BaseExceptionHandler {
+public class RequestForbiddenExceptionHandler extends BaseExceptionHandler {
 
-	@ExceptionHandler(value = MethodNotAllowedException.class)
-	@ResponseStatus(value = HttpStatus.METHOD_NOT_ALLOWED) // 405
-	public ErrorDTO handleNotFoundException(MethodNotAllowedException e) {
+	@ExceptionHandler(value = RequestForbiddenException.class)
+	@ResponseStatus(value = HttpStatus.FORBIDDEN) // 403
+	public ErrorDTO handleBadRequestException(RequestForbiddenException e) {
 		return getError(e);
 	}
 }

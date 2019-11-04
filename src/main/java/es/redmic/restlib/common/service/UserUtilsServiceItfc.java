@@ -24,6 +24,8 @@ import java.util.List;
 
 public interface UserUtilsServiceItfc {
 
+	public String getUserId();
+
 	public List<String> getUserRole();
 
 	public List<Long> getAccessibilityControl();

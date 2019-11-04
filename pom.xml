@@ -12,13 +12,13 @@
 	<groupId>es.redmic.lib</groupId>
 	<artifactId>rest-lib</artifactId>
 	<packaging>jar</packaging>
-	<version>0.10.0</version>
+	<version>0.10.0-feature-atlasMicroservice</version>
 	<name>rest-lib</name>
 	
 	<properties>
 		<!-- REDMIC -->
-		<redmic.exceptions.version>0.8.0</redmic.exceptions.version>
-		<redmic.utils.version>0.8.0</redmic.utils.version>
+		<redmic.exceptions.version>0.10.0</redmic.exceptions.version>
+		<redmic.utils.version>0.10.0</redmic.utils.version>
 	</properties>
 
 	<dependencies>
